@@ -6,53 +6,83 @@
     <title>ShieldGuard | Secure Your Future</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .modal-active { overflow: hidden; }
+    </style>
 </head>
 <body class="bg-slate-900 text-white font-sans scroll-smooth">
 
-    <nav class="sticky top-0 z-50 flex justify-between items-center p-6 bg-slate-800/95 backdrop-blur shadow-xl">
-        <h1 class="text-2xl font-bold text-blue-400 tracking-tight">SHIELD<span class="text-white">GUARD</span></h1>
+    <nav class="sticky top-0 z-50 flex justify-between items-center p-6 bg-slate-800/95 backdrop-blur shadow-xl border-b border-slate-700">
+        <h1 class="text-2xl font-bold text-blue-400 tracking-tight underline decoration-blue-500/30">SHIELD<span class="text-white">GUARD</span></h1>
         <div class="hidden md:flex space-x-8 font-medium">
             <a href="#services" class="hover:text-blue-400 transition">Services</a>
-            <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+            <a href="#contact" class="hover:text-blue-400 transition">Inquiries</a>
             <a href="#book" class="bg-blue-600 px-5 py-2 rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-900/20">Free Consultation</a>
         </div>
     </nav>
 
     <header class="py-24 text-center px-4 bg-gradient-to-b from-slate-800 to-slate-900">
         <div class="inline-block px-4 py-1 border border-blue-500/30 rounded-full text-blue-400 text-sm mb-6 bg-blue-500/10">
-            Now Accepting New Small Business Clients
+            Professional Entry-Level Cybersecurity Solutions
         </div>
-        <h2 class="text-5xl md:text-6xl font-extrabold mb-6">Cybersecurity for the <span class="text-blue-500">Modern Professional.</span></h2>
-        <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10">We provide entry-level security audits, employee training, and risk assessments to keep your data under lock and key.</p>
+        <h2 class="text-5xl md:text-6xl font-extrabold mb-6">Securing Your <span class="text-blue-500">Digital Perimeter.</span></h2>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10">Protecting small businesses through proactive scanning, encrypted traffic, and real-time monitoring.</p>
     </header>
 
     <section id="services" class="py-20 container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h3 class="text-3xl font-bold mb-4">Core Security Services</h3>
+            <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
+            <p class="mt-4 text-slate-500 italic">Click a service card to learn more about our process</p>
+        </div>
+        
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="p-8 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all group">
-                <i class="fas fa-fingerprint text-4xl mb-6 text-blue-500 group-hover:scale-110 transition"></i>
-                <h4 class="text-xl font-bold mb-3">Security Audits</h4>
-                <p class="text-slate-400">A comprehensive check of your digital footprint and vulnerabilities.</p>
+            <div onclick="openServiceDetail('vuln')" class="cursor-pointer p-8 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all group">
+                <i class="fas fa-search-radar text-4xl mb-6 text-blue-500 group-hover:scale-110 transition"></i>
+                <h4 class="text-xl font-bold mb-3">Vulnerability Scanning</h4>
+                <p class="text-slate-400">Automated and manual discovery of weaknesses in your system's infrastructure.</p>
+                <p class="text-blue-400 text-xs mt-4 font-bold uppercase tracking-widest group-hover:translate-x-2 transition-transform">Read Details →</p>
             </div>
-            <div class="p-8 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all group">
-                <i class="fas fa-network-wired text-4xl mb-6 text-blue-500 group-hover:scale-110 transition"></i>
-                <h4 class="text-xl font-bold mb-3">Network Defense</h4>
-                <p class="text-slate-400">Hardening your Wi-Fi and local networks against external threats.</p>
+
+            <div onclick="openServiceDetail('https')" class="cursor-pointer p-8 bg-slate-800 rounded-2xl border border-slate-700 hover:border-green-500 transition-all group">
+                <i class="fas fa-user-shield text-4xl mb-6 text-green-500 group-hover:scale-110 transition"></i>
+                <h4 class="text-xl font-bold mb-3">HTTPS Migration</h4>
+                <p class="text-slate-400">Securing your website with SSL/TLS certificates to encrypt user data and improve SEO.</p>
+                <p class="text-green-400 text-xs mt-4 font-bold uppercase tracking-widest group-hover:translate-x-2 transition-transform">Read Details →</p>
             </div>
-            <div class="p-8 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 transition-all group">
-                <i class="fas fa-graduation-cap text-4xl mb-6 text-blue-500 group-hover:scale-110 transition"></i>
-                <h4 class="text-xl font-bold mb-3">Staff Training</h4>
-                <p class="text-slate-400">Teaching your team how to spot 99% of modern phishing attacks.</p>
+
+            <div onclick="openServiceDetail('net')" class="cursor-pointer p-8 bg-slate-800 rounded-2xl border border-slate-700 hover:border-purple-500 transition-all group">
+                <i class="fas fa-satellite-dish text-4xl mb-6 text-purple-500 group-hover:scale-110 transition"></i>
+                <h4 class="text-xl font-bold mb-3">Network Monitoring</h4>
+                <p class="text-slate-400">Real-time surveillance of network traffic to identify and flag unauthorized access.</p>
+                <p class="text-purple-400 text-xs mt-4 font-bold uppercase tracking-widest group-hover:translate-x-2 transition-transform">Read Details →</p>
             </div>
         </div>
     </section>
 
+    <div id="serviceModal" class="fixed inset-0 z-[100] hidden bg-slate-950/90 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slate-800 border border-slate-700 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div id="modalIcon" class="text-4xl"></div>
+                    <button onclick="closeServiceDetail()" class="text-slate-400 hover:text-white text-3xl font-light">&times;</button>
+                </div>
+                <h3 id="modalTitle" class="text-3xl font-bold mb-4"></h3>
+                <div id="modalBody" class="text-slate-400 leading-relaxed space-y-4 text-lg">
+                    </div>
+                <div class="mt-10 flex flex-wrap gap-4">
+                    <a href="#contact" onclick="closeServiceDetail()" class="bg-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition">Inquire Now</a>
+                    <button onclick="closeServiceDetail()" class="border border-slate-600 px-8 py-3 rounded-xl font-bold hover:bg-slate-700 transition">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section id="contact" class="py-20 bg-slate-950">
         <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16">
-            
             <div class="bg-slate-800 p-8 rounded-3xl shadow-2xl border border-slate-700">
-                <h3 class="text-2xl font-bold mb-2">Send an Inquiry</h3>
-                <p class="text-slate-400 mb-8">Receive a response within 24 hours.</p>
-                
+                <h3 class="text-2xl font-bold mb-2">Service Inquiry</h3>
+                <p class="text-slate-400 mb-8">Tell us which security layer you need help with.</p>
                 <form action="https://formspree.io/f/xqedazoq" method="POST" class="space-y-5">
                     <div>
                         <label class="block text-sm font-semibold text-slate-400 mb-2">Full Name</label>
@@ -63,42 +93,86 @@
                         <input type="email" name="_replyto" required class="w-full p-4 rounded-xl bg-slate-900 border border-slate-700 focus:border-blue-500 outline-none transition">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-slate-400 mb-2">Message</label>
-                        <textarea name="message" required rows="4" class="w-full p-4 rounded-xl bg-slate-900 border border-slate-700 focus:border-blue-500 outline-none transition"></textarea>
+                        <label class="block text-sm font-semibold text-slate-400 mb-2">Interest Service</label>
+                        <select name="requested_service" class="w-full p-4 rounded-xl bg-slate-900 border border-slate-700 focus:border-blue-500 outline-none transition text-slate-300">
+                            <option value="Vulnerability Scanning">Vulnerability Scanning</option>
+                            <option value="HTTPS Migration">HTTPS Migration (SSL)</option>
+                            <option value="Network Monitoring">Network Monitoring</option>
+                            <option value="General Support">General Support</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-400 mb-2">How can we help?</label>
+                        <textarea name="message" required rows="4" class="w-full p-4 rounded-xl bg-slate-900 border border-slate-700 focus:border-blue-500 outline-none transition" placeholder="Describe your current setup..."></textarea>
                     </div>
                     <button type="submit" class="w-full bg-blue-600 py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transform hover:-translate-y-1 transition-all shadow-lg">
-                        Send Inquiry
+                        Submit Request
                     </button>
                 </form>
             </div>
 
             <div id="book" class="flex flex-col justify-center">
-                <h3 class="text-4xl font-bold mb-6">Ready to secure <br><span class="text-blue-500">your business?</span></h3>
-                <p class="text-lg text-slate-400 mb-8">Click below to open our calendar and book a 15-minute introductory security call. It's free, confidential, and no-obligation.</p>
-                
-                <div class="bg-slate-800 p-6 rounded-2xl border-l-4 border-green-500 mb-8">
-                    <p class="text-sm uppercase tracking-widest text-slate-500 font-bold mb-2">Availability</p>
-                    <p class="text-xl font-semibold text-green-400"><i class="far fa-clock mr-2"></i> Mon - Fri, 9am - 5pm EST</p>
+                <h3 class="text-4xl font-bold mb-6">Book a Security <br><span class="text-blue-500">Expert Call.</span></h3>
+                <p class="text-lg text-slate-400 mb-8">Discuss your threat model and get a free quote for our implementation services.</p>
+                <div class="bg-slate-800 p-6 rounded-2xl border-l-4 border-blue-500 mb-8">
+                    <p class="text-sm uppercase tracking-widest text-slate-500 font-bold mb-2">Current Status</p>
+                    <p class="text-xl font-semibold text-blue-400"><i class="fas fa-check-circle mr-2"></i> Accepting Bookings for 2026</p>
                 </div>
-
                 <button onclick="openBooking()" class="bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-xl hover:bg-blue-500 hover:text-white transition-all text-center shadow-2xl">
-                    <i class="fas fa-calendar-alt mr-2"></i> BOOK FREE APPOINTMENT
+                    <i class="fas fa-calendar-alt mr-2"></i> CLAIM FREE TIMESLOT
                 </button>
             </div>
-
         </div>
     </section>
 
     <footer class="text-center py-12 border-t border-slate-800 text-slate-500 text-sm">
-        <p>&copy; 2026 ShieldGuard Cybersecurity. Built for excellence.</p>
+        <p>&copy; 2026 ShieldGuard Cybersecurity. Your security is our priority.</p>
     </footer>
 
     <script>
+        // Detail Content Database
+        const serviceInfo = {
+            vuln: {
+                title: "Vulnerability Scanning",
+                icon: '<i class="fas fa-search-radar text-blue-500"></i>',
+                body: "Our scanning process involves deep inspection of your digital assets. We use industry-standard tools to identify outdated software, misconfigured firewalls, and leaked credentials. You receive a comprehensive remediation report to close every gap."
+            },
+            https: {
+                title: "HTTPS Migration (SSL)",
+                icon: '<i class="fas fa-user-shield text-green-500"></i>',
+                body: "We implement robust SSL/TLS encryption across your entire web presence. Beyond just the padlock icon, we configure HSTS policies and secure cookies to ensure your user data remains private and your SEO ranking stays high."
+            },
+            net: {
+                title: "Network Monitoring",
+                icon: '<i class="fas fa-satellite-dish text-purple-500"></i>',
+                body: "24/7 visibility into your internal and external traffic. We set up behavioral alerts to detect lateral movement, unauthorized access points, and data exfiltration attempts. Know exactly what is happening on your network at all times."
+            }
+        };
+
+        function openServiceDetail(key) {
+            const info = serviceInfo[key];
+            document.getElementById('modalTitle').innerText = info.title;
+            document.getElementById('modalIcon').innerHTML = info.icon;
+            document.getElementById('modalBody').innerText = info.body;
+            document.getElementById('serviceModal').classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeServiceDetail() {
+            document.getElementById('serviceModal').classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
         function openBooking() {
-            // Replace the URL below with your actual Calendly or booking link
             const bookingUrl = "https://calendly.com"; 
             window.open(bookingUrl, '_blank');
-            alert("Redirecting you to our secure booking calendar...");
+            console.log("Redirecting to booking calendar...");
+        }
+
+        // Close modal if user clicks background
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target == modal) closeServiceDetail();
         }
     </script>
 </body>
